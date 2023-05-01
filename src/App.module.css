@@ -1,0 +1,12 @@
+.wrapper {
+    margin: 2rem auto;
+    /* o auto neste caso irá tornar o wrapper centralizado na tela  */
+    max-width: 70rem;
+    padding: 0 1rem;
+
+    display: grid;
+    grid-template-columns: 256px 1fr;
+    /* fr: unidade utilizada no grid para dizer que algo vai ter um tamanho flexível */
+    gap: 2rem;
+    align-items: flex-start;
+}
