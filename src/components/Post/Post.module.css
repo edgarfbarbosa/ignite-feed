@@ -1,1 +1,33 @@
-.post {}
+.post {
+    background: var(--gray-800);
+    border-radius: 8px;
+    padding: 2.5rem;
+}
+
+/*
+    * Aplicar espaçamento entre os posts;
+    * O espaçamento só deve existir se houver mais de 1 post;
+    * .post + .post aplica estilização no 2º post já que antes tem 1º post;
+    * Logo, o margin-top só vai ser aplicado para posts que tenham outro post antes dele;
+    * Isso também pode ser feito com first-child, gap.
+*/
+
+.post+.post {
+    margin-top: 2rem
+}
+
+.content {
+    line-height: 1.6;
+    color: var(--gray-300);
+    margin-top: 1.5rem;
+}
+
+.content p {
+    margin-top: 1rem;
+}
+
+.content a {
+    font-weight: bold;
+    color: var(--green-500);
+    text-decoration: none;
+}
