@@ -25,8 +25,8 @@
     border-radius: 8px;
     outline: 2px solid var(--green-500);
 
-    height: 3rem;
-    width: 3rem;
+    height: calc(3rem + 12px);
+    width: calc(3rem + 12px);
 
     box-sizing: initial;
     /* box-sizing: initial faz com que quando for adicionado borda, outline, padding, etc em um elemento isso ocupe um espaço a mais, e não 'esprema' o elemento */
