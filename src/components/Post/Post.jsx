@@ -2,7 +2,9 @@ import { Avatar } from '../Avatar/Avatar'
 import { Comment } from '../Comment/Comment'
 import styles from './Post.module.css'
 
-export function Post() {
+export function Post(props) {
+  console.log(props)
+
   return (
     <article className={styles.post}>
       <header>
@@ -29,11 +31,11 @@ export function Post() {
         <p>
           <a href="">#novoprojeto</a>{' '}
           <a href="">#nlw</a>{' '}
+          <a href="">#rocketseat</a>
           {/*
                 * {' '} é utilizado para adicionar espaço real entre os elementos;
                 * Não é uma boa prática. 
             */}
-          <a href="">#rocketseat</a>
         </p>
       </div>
 
