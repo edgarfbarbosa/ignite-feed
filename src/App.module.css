@@ -1,12 +1,30 @@
 .wrapper {
-    margin: 2rem auto;
-    /* o auto neste caso irá tornar o wrapper centralizado na tela  */
-    max-width: 70rem;
-    padding: 0 1rem;
+  margin: 2rem auto;
+  /* o auto neste caso irá tornar o wrapper centralizado na tela  */
+  max-width: 70rem;
+  padding: 0 1rem;
 
-    display: grid;
-    grid-template-columns: 256px 1fr;
-    /* fr: unidade utilizada no grid para dizer que algo vai ter um tamanho flexível */
-    gap: 2rem;
-    align-items: flex-start;
+  display: grid;
+  grid-template-columns: 256px 1fr;
+  /* fr: unidade utilizada no grid para dizer que algo vai ter um tamanho flexível */
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Quando a tela for menor que 768px: */
+@media (max-width: 768px) {
+  html {
+    /*
+    * Devido a utilização de uma unidade de medida relativa (rem),
+      nossa página redimensiona com base no nosso font-size;
+    * Neste caso, deve ser utilizado um valor percentual no font-size;
+    * Regra de três para descobrir o percentual:
+      16px (1rem) é 100%, 14px é 87,5 %;
+    */
+    font-size: 87.5%;
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
 }
