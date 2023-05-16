@@ -1,11 +1,31 @@
+import styles from './Post.module.css'
+
+// * Import do useState:
+import { useState } from 'react'
+
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
 import { Avatar } from '../Avatar/Avatar'
 import { Comment } from '../Comment/Comment'
-import styles from './Post.module.css'
+
 
 export function Post({ author, publishedAt, content }) {
+  // useState:
+
+  // * Primeiro parâmetro: valor inicial da variável;
+  // * Segundo parâmetro: função para alterar o valor;
+
+  // const comments = useState([1, 2], function (){})
+
+
+  // * Essa é a forma destruturada de criar um useState:
+
+  const [comments, setComments] = useState(
+    [1, 2]
+  )
+
+
   const publishedDateFormatted = format(
     publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
@@ -18,6 +38,17 @@ export function Post({ author, publishedAt, content }) {
       locale: ptBR,
       addSuffix: true
     })
+
+  function handleCreateNewComment() {
+    event.preventDefault()
+
+    // * Dessa forma eu estou sempre de forma fixa adicionando apenas 3 comentários:
+    // * setComments([1, 2, 3, 4])
+
+    setComments([...comments, comments.length + 1])
+
+    console.log(comments.length)
+  }
 
   return (
     <article className={styles.post}>
@@ -47,7 +78,7 @@ export function Post({ author, publishedAt, content }) {
         }
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback:</strong>
 
         <textarea
@@ -60,9 +91,13 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {/* 
+        * Percorrendo o array comment criado acima e retornando o componente Comment para cada valor inserido na variável;
+        * O useState está adicionando um valor a mais na variável;
+        */}
+        {comments.map(item => {
+          return <Comment />
+        })}
       </div>
     </article >
   )
