@@ -25,6 +25,8 @@ export function Post({ author, publishedAt, content }) {
     'Post muito bacana, hein?',
   ])
 
+  const [newCommentText, setNewCommentText] = useState('')
+
 
   const publishedDateFormatted = format(
     publishedAt,
@@ -43,14 +45,21 @@ export function Post({ author, publishedAt, content }) {
     event.preventDefault()
     // * Pegar o texto para adicionar como comentário do post:
     // console.log(event.target.comment.value)
-    const newCommentText = event.target.comment.value
+    // const newCommentText = event.target.comment.value
 
     // * Dessa forma eu estou sempre de forma fixa adicionando apenas 3 comentários:
     // * setComments([1, 2, 3, 4])
     setComments([...comments, newCommentText])
 
     // * Limpar a textarea
-    event.target.comment.value = ''
+    // event.target.comment.value = ''
+
+    // * Utilizando programação declarativa para limpar o textarea
+    setNewCommentText('')
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value)
   }
 
   return (
@@ -87,6 +96,8 @@ export function Post({ author, publishedAt, content }) {
         <textarea
           name="comment"
           placeholder="Deixe um comentário"
+          value={newCommentText}
+          onChange={handleNewCommentChange}
         />
 
         <footer>
