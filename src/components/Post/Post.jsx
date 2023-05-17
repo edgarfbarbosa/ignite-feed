@@ -21,9 +21,9 @@ export function Post({ author, publishedAt, content }) {
 
   // * Essa é a forma destruturada de criar um useState:
 
-  const [comments, setComments] = useState(
-    [1, 2]
-  )
+  const [comments, setComments] = useState([
+    'Post muito bacana, hein?',
+  ])
 
 
   const publishedDateFormatted = format(
@@ -41,13 +41,16 @@ export function Post({ author, publishedAt, content }) {
 
   function handleCreateNewComment() {
     event.preventDefault()
+    // * Pegar o texto para adicionar como comentário do post:
+    // console.log(event.target.comment.value)
+    const newCommentText = event.target.comment.value
 
     // * Dessa forma eu estou sempre de forma fixa adicionando apenas 3 comentários:
     // * setComments([1, 2, 3, 4])
+    setComments([...comments, newCommentText])
 
-    setComments([...comments, comments.length + 1])
-
-    console.log(comments.length)
+    // * Limpar a textarea
+    event.target.comment.value = ''
   }
 
   return (
@@ -82,6 +85,7 @@ export function Post({ author, publishedAt, content }) {
         <strong>Deixe seu feedback:</strong>
 
         <textarea
+          name="comment"
           placeholder="Deixe um comentário"
         />
 
@@ -95,8 +99,8 @@ export function Post({ author, publishedAt, content }) {
         * Percorrendo o array comment criado acima e retornando o componente Comment para cada valor inserido na variável;
         * O useState está adicionando um valor a mais na variável;
         */}
-        {comments.map(item => {
-          return <Comment />
+        {comments.map(comment => {
+          return <Comment content={comment} />
         })}
       </div>
     </article >
