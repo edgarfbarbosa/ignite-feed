@@ -80,11 +80,11 @@ export function Post({ author, publishedAt, content }) {
 
       <div className={styles.content}>
         {
-          content.map(item => {
-            if (item.type === 'paragraph') {
-              return <p>{item.content}</p>
-            } else if (item.type === 'link') {
-              return <p><a href="#">{item.content}</a></p>
+          content.map(line => {
+            if (line.type === 'paragraph') {
+              return <p key={line.content}>{line.content}</p>
+            } else if (line.type === 'link') {
+              return <p key={line.content}><a href="#">{line.content}</a></p>
             }
           })
         }
@@ -111,7 +111,7 @@ export function Post({ author, publishedAt, content }) {
         * O useState está adicionando um valor a mais na variável;
         */}
         {comments.map(comment => {
-          return <Comment content={comment} />
+          return <Comment key={content} content={comment} />
         })}
       </div>
     </article >
