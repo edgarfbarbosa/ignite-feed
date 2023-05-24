@@ -62,13 +62,15 @@ export function Post({ author, publishedAt, content }) {
     setNewCommentText(event.target.value)
   }
 
+  function deleteComment(comment) {
+    console.log(`Deletar comentário ${comment}`)
+  }
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
           <Avatar src={author.avatarUrl} />
-          {/* <Avatar hasBorder src="https://github.com/diego3g.png" /> */}
-          {/* <Avatar hasBorder={true} src="https://github.com/diego3g.png" /> */}
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>
             <span>{author.role}</span>
@@ -111,7 +113,13 @@ export function Post({ author, publishedAt, content }) {
         * O useState está adicionando um valor a mais na variável;
         */}
         {comments.map(comment => {
-          return <Comment key={content} content={comment} />
+          return (
+            <Comment
+              key={content}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          )
         })}
       </div>
     </article >
